@@ -3,6 +3,8 @@ package in.prasadit.rest;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.annotations.common.util.impl.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +25,10 @@ public class PlanRestController {
 	
 	@Autowired
 	private PlanService planservice;
-	
+Logger logger =org.slf4j.LoggerFactory.getLogger(PlanRestController.class);
 	@GetMapping("/categories")
 	public ResponseEntity<Map<Integer,String>> planCategory(){
+		logger.info("plan category is started");
 		Map<Integer, String> categories = planservice.getPlanCategories();
 		return new ResponseEntity<>(categories,HttpStatus.OK);
 	}
